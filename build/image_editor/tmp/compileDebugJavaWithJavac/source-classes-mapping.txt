@@ -1,0 +1,4 @@
+top/kikt/flutter_image_editor/common/font/FontUtils.java
+ top.kikt.flutter_image_editor.common.font.FontUtils
+top/kikt/flutter_image_editor/BuildConfig.java
+ top.kikt.flutter_image_editor.BuildConfig

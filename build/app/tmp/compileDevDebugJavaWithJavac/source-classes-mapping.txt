@@ -1,0 +1,6 @@
+com/mokkon/sme/sme/MainActivity.java
+ com.mokkon.sme.sme.MainActivity
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/mokkon/sme/sme/BuildConfig.java
+ com.mokkon.sme.sme.BuildConfig

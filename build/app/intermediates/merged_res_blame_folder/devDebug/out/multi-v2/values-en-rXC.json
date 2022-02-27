@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/user/ws/absq/build/app/intermediates/incremental/mergeDevDebugResources/merged.dir/values-en-rXC/values-en-rXC.xml",
+            "map": [
+                {
+                    "source": "/home/user/.gradle/caches/transforms-2/files-2.1/83daf3c3778ecdff5de6cc52b9e7fc01/core-1.6.0/res/values-en-rXC/values-en-rXC.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "203",
+                        "endOffsets": "254"
+                    }
+                }
+            ]
+        }
+    ]
+}

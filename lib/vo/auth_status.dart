@@ -1,0 +1,1 @@
+enum AuthStatus { SMS_SENT, AUTH_VERIFIED, ERROR, SIGN_OUT }

@@ -1,0 +1,7 @@
+/home/user/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/barcode_scan2-4.2.0/android/src/main/kotlin/de/mintware/barcode_scan/BarcodeScannerActivity.kt
+/home/user/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/barcode_scan2-4.2.0/android/src/main/kotlin/de/mintware/barcode_scan/ZXingAutofocusScannerView.kt
+/home/user/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/barcode_scan2-4.2.0/android/src/main/kotlin/de/mintware/barcode_scan/ScanResultHandler.kt
+/home/user/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/barcode_scan2-4.2.0/android/src/main/kotlin/de/mintware/barcode_scan/ActivityHelper.kt
+/home/user/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/barcode_scan2-4.2.0/android/src/main/kotlin/de/mintware/barcode_scan/BarcodeScanPlugin.kt
+/home/user/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/barcode_scan2-4.2.0/android/src/main/kotlin/de/mintware/barcode_scan/ChannelHandler.kt
+/home/user/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/barcode_scan2-4.2.0/android/src/main/kotlin/de/mintware/barcode_scan/RequestCameraPermissionHandler.kt
