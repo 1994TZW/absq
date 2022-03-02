@@ -7,29 +7,30 @@ import 'package:provider/provider.dart';
 
 import 'announcement/announcement_list.dart';
 import 'exam_timetable/timetable_list.dart';
+import 'registration/registration_list.dart';
 import 'registration/welcome_page.dart';
 
-class TabPage extends StatefulWidget {
-  const TabPage({Key? key}) : super(key: key);
+class AdminTabPage extends StatefulWidget {
+  const AdminTabPage({Key? key}) : super(key: key);
 
   @override
-  _TabPageState createState() => _TabPageState();
+  _AdminTabPageState createState() => _AdminTabPageState();
 }
 
-class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
+class _AdminTabPageState extends State<AdminTabPage>
+    with TickerProviderStateMixin {
   int _selectedIndex = 0;
 
   static const List<Widget> _adminPages = <Widget>[
-    WelcomePage(),
+    RegistrationList(),
     TimeTabelList(),
     AnnouncementList(),
-    // Center(child: Text("Students"))
   ];
 
   List<BottomNavigationBarItem> adminItems = [
     const BottomNavigationBarItem(
       icon: Icon(AntDesign.form),
-      label: 'Registration',
+      label: 'Registrations',
     ),
     const BottomNavigationBarItem(
       icon: Icon(MaterialCommunityIcons.calendar_clock),

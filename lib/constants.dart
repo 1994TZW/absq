@@ -83,3 +83,7 @@ const emptyReturnType = "Empty Return";
 const saleType = "Sale";
 const emptyPurchaseType = "Empty Purchase";
 const trnasferType = "Transfer";
+
+const cefl_type="CEFL";
+const bmat_type ="BMAT";
+const prep_center_type ="Prep Center";

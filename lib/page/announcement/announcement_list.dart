@@ -1,11 +1,11 @@
 import 'package:absq/helper/theme.dart';
+import 'package:absq/model/announcement_model.dart';
 import 'package:absq/model/main_model.dart';
-import 'package:absq/model/timetable_model.dart';
-import 'package:absq/vo/timetable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../vo/announcement.dart';
 import '../../vo/user.dart';
 import '../../widget/absq_local_app_bar.dart';
 import '../../widget/expandable_text.dart';
@@ -13,14 +13,14 @@ import '../../widget/show_img.dart';
 import '../contact/contact_us_page.dart';
 import '../profile/profile_page.dart';
 
-class TimeTabelList extends StatefulWidget {
-  const TimeTabelList({Key? key}) : super(key: key);
+class AnnouncementList extends StatefulWidget {
+  const AnnouncementList({Key? key}) : super(key: key);
 
   @override
-  State<TimeTabelList> createState() => _TimeTabelListState();
+  State<AnnouncementList> createState() => _AnnouncementListState();
 }
 
-class _TimeTabelListState extends State<TimeTabelList> {
+class _AnnouncementListState extends State<AnnouncementList> {
   @override
   Widget build(BuildContext context) {
     // User? _user = Provider.of<MainModel>(context).user;
@@ -29,7 +29,7 @@ class _TimeTabelListState extends State<TimeTabelList> {
     // }
     // User user = Provider.of<MainModel>(context).user!;
 
-    var timetableModel = Provider.of<TimetableModel>(context);
+    var announceModel = Provider.of<AnnouncementModel>(context);
 
     return Scaffold(
       appBar: AbsqLocalAppBar(
@@ -47,7 +47,7 @@ class _TimeTabelListState extends State<TimeTabelList> {
                 borderRadius: BorderRadius.circular(10.0),
               ),
             )),
-        title: const Text("Exam Timetables",
+        title: const Text("Knowledge Garden",
             style: TextStyle(color: primaryColor, fontSize: 20)),
         actions: [
           IconButton(
@@ -79,18 +79,18 @@ class _TimeTabelListState extends State<TimeTabelList> {
       ),
       body: ListView.builder(
           padding: const EdgeInsets.all(10),
-          itemCount: timetableModel.timeTables.length,
+          itemCount: announceModel.announcements.length,
           itemBuilder: (BuildContext context, int index) {
-            return _item(timetableModel.timeTables[index], context);
+            return _item(announceModel.announcements[index], context);
           }),
     );
   }
 
-  Widget _item(TimeTable timeTable, BuildContext context) {
+  Widget _item(Announcement announcement, BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(CupertinoPageRoute(
-            builder: (context) => ShowImage(localImage: timeTable.url!)));
+            builder: (context) => ShowImage(localImage: announcement.url!)));
       },
       child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 5),
@@ -110,12 +110,12 @@ class _TimeTabelListState extends State<TimeTabelList> {
                     children: [
                       Expanded(
                           child: ExpandableText(
-                        text: timeTable.desc ?? "",
+                        text: announcement.desc ?? "",
                       )),
                       InkWell(
                         onTap: (){},
                         child: const Padding(
-                          padding: EdgeInsets.only(top: 0),
+                          padding: EdgeInsets.only(right: 8,top: 8),
                           child: Icon(
                             Icons.download,
                             color: Colors.grey,
@@ -127,7 +127,7 @@ class _TimeTabelListState extends State<TimeTabelList> {
                 ),
                 const SizedBox(height: 3),
                 Image.asset(
-                  timeTable.url ?? "",
+                  announcement.url ?? "",
                   fit: BoxFit.cover,
                 ),
               ],

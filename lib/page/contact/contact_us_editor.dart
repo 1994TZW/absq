@@ -98,10 +98,10 @@ class _ContactUsEditorState extends State<ContactUsEditor> {
                 child: Column(
                   children: [
                     contactBox,
-                    addressBox,
                     emailBox,
                     faceBookBox,
                     websiteBox,
+                    addressBox,
                     const SizedBox(
                       height: 10,
                     ),

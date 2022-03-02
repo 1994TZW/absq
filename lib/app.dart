@@ -1,3 +1,4 @@
+import 'package:absq/model/registration_model.dart';
 import 'package:absq/model/timetable_model.dart';
 import 'package:absq/page/tab_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +8,7 @@ import 'package:absq/model/user_model.dart';
 
 import 'helper/localization/app_translations_delegate.dart';
 import 'helper/localization/transalation.dart';
+import 'model/announcement_model.dart';
 import 'model/language_model.dart';
 import 'model/main_model.dart';
 import 'page/login/login_page.dart';
@@ -22,7 +24,9 @@ class _AppState extends State<App> {
   final LanguageModel lanuguageModel = LanguageModel();
   final UserModel userModel = UserModel();
 
-  final TimetableModel _timetableModel= TimetableModel();
+  final TimetableModel _timetableModel = TimetableModel();
+  final AnnouncementModel _announcementModel = AnnouncementModel();
+  final RegistrationModel _registrationModel = RegistrationModel();
 
   late AppTranslationsDelegate _newLocaleDelegate;
 
@@ -34,6 +38,8 @@ class _AppState extends State<App> {
     Translation().onLocaleChanged = onLocaleChange;
     mainModel.addModel(userModel);
     mainModel.addModel(_timetableModel);
+    mainModel.addModel(_announcementModel);
+    mainModel.addModel(_registrationModel);
   }
 
   void onLocaleChange(Locale locale) {
@@ -59,6 +65,8 @@ class _AppState extends State<App> {
           ChangeNotifierProvider.value(value: lanuguageModel),
           ChangeNotifierProvider.value(value: userModel),
           ChangeNotifierProvider.value(value: _timetableModel),
+          ChangeNotifierProvider.value(value: _announcementModel),
+          ChangeNotifierProvider.value(value: _registrationModel),
         ],
         child: Consumer<LanguageModel>(
           builder: (context, value, child) {

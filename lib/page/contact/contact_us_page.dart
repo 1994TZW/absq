@@ -36,28 +36,29 @@ class _ContactUsPageState extends State<ContactUsPage> {
       ContactData(
           iconData: CupertinoIcons.phone,
           title: "contact.phone",
-          text: setting.contactNumber,
+          text: "09459186191",
           contactType: ContactType.PhoneContact),
       ContactData(
           iconData: CupertinoIcons.mail,
           title: "contact.email",
           contactType: ContactType.EmailContact,
-          text: setting.email),
+          text: "info@standardmyanmar.com"),
       ContactData(
           iconData: FontAwesomeIcons.facebook,
           title: "contact.facebook",
           contactType: ContactType.FacebookContact,
-          text: setting.facebookLink),
+          text: "https://www.facebook.com/ABSQCambridge/?ti=as"),
       ContactData(
           iconData: FontAwesomeIcons.chrome,
           title: "contact.google",
           contactType: ContactType.WebsiteContact,
-          text: setting.website),
+          text: "https://www.standardmyanmar.com/"),
       ContactData(
           iconData: CupertinoIcons.location,
           title: "contact.address",
           contactType: ContactType.AddressContact,
-          text: setting.address),
+          text:
+              "1163,Thirigon Housing, Gantgaw Yeik Thar St, Thingangyun Tsp, Yangon, Myanmar #11701"),
     ];
     return Scaffold(
       appBar: LocalAppBar(
@@ -66,8 +67,9 @@ class _ContactUsPageState extends State<ContactUsPage> {
         labelColor: primaryColor,
         arrowColor: primaryColor,
         actions: [
-          _user.hasAdmin()
-              ? IconButton(
+          // _user.hasAdmin()
+          //     ?
+               IconButton(
                   icon: const Icon(
                     Icons.edit,
                     color: primaryColor,
@@ -81,7 +83,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                               )),
                     );
                   })
-              : const SizedBox()
+              // : const SizedBox()
         ],
       ),
       body: Container(

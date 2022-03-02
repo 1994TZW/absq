@@ -24,6 +24,7 @@ class AbsqLocalAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 1,
+      shadowColor: Colors.transparent,
       leading: leading,
       backgroundColor: backgroundColor,
       title: title,

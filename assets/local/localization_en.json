@@ -486,8 +486,8 @@
     "invite.request.successful":"Successfully requested!",
     "invite.btn":"Invite",
 
-    "user_edit.welcome":"Welcome to SM Engineering",
-    "user_edit.name":"Please enter your name",
+    "user_edit.welcome":"Welcome to ABSQ",
+    "user_edit.name":"Please enter your email",
 
     "offline.status":"Offline, unable to connect to server!",
 
@@ -647,7 +647,21 @@
     "report.trial_balance":"Trial Balance",
     "report.SOPL":"Profit &  Loss",
     "report.SOFP":"Balance Sheet",
-    "report.total":"Total"
+    "report.total":"Total",
+
+    "registration.form.title":"Registration",
+    "registration.center_name":"Center Name",
+    "registration.center_no":"Center Number",
+    "registration.date":"Date",
+    "registration.name":"Full Name",
+    "registration.gender":"Gender",
+    "registration.date_of_birth":"Date of Birth",
+    "registration.id_number":"ID Number",
+    "registration.address":"Address",
+    "registration.level":"Exam Level",
+    "registration.email":"Email",
+    "registration.phone":"Phone Number",
+    "registration.school_name":"Name of School & Teacher"
     
     
      

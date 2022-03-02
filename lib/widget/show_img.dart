@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:absq/helper/theme.dart';
@@ -29,13 +27,14 @@ class _ShowImageState extends State<ShowImage> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: new IconButton(
-          icon: new Icon(Icons.close),
+        leading: IconButton(
+          icon: const Icon(Icons.close),
           onPressed: () => Navigator.of(context).pop(),
         ),
         backgroundColor: primaryColor,
         shadowColor: Colors.transparent,
-        iconTheme: new IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
+        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.download))],
       ),
       body: Center(
           child: PhotoView(

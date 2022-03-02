@@ -108,7 +108,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Column(
               children: const <Widget>[
                 Text(
-                  "ACCREDITED BENCHMARK",
+                  "Cambridge Exam Centre",
                   style: welcomeSubLabelStyle,
                 ),
               ],
