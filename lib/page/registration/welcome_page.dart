@@ -5,6 +5,9 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../../widget/absq_local_app_bar.dart';
 import '../login/signin_email.dart';
+import 'BMAT_Form.dart';
+import 'CEFR_Form.dart';
+import 'Prep_Center_Form.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -24,7 +27,8 @@ class _WelcomePageState extends State<WelcomePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    CupertinoPageRoute(builder: (context) => const SigninEmail()),
+                    CupertinoPageRoute(
+                        builder: (context) => const SigninEmail()),
                   );
                 },
                 icon: const Icon(
@@ -41,7 +45,6 @@ class _WelcomePageState extends State<WelcomePage> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
                   child: Column(
-                    // crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
@@ -51,22 +54,21 @@ class _WelcomePageState extends State<WelcomePage> {
                       ),
                       Image.asset(
                         "assets/logo.png",
-                        // height: 40,
                         filterQuality: FilterQuality.medium,
                       ),
-                      // Container(
-                      //   height: MediaQuery.of(context).size.height / 4,
-                      //   decoration: const BoxDecoration(
-                      //       image: DecorationImage(
-                      //           image: AssetImage('assets/logo.png'))),
-                      // ),
                       const SizedBox(
                         height: 20,
                       ),
                       MaterialButton(
                         minWidth: double.infinity,
                         height: 60,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (context) => const CEFRForm()),
+                          );
+                        },
                         color: primaryColor,
                         shape: RoundedRectangleBorder(
                             side: const BorderSide(
@@ -87,7 +89,13 @@ class _WelcomePageState extends State<WelcomePage> {
                       MaterialButton(
                         minWidth: double.infinity,
                         height: 60,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (context) => const BMATForm()),
+                          );
+                        },
                         color: Colors.red,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(40)),
@@ -105,7 +113,13 @@ class _WelcomePageState extends State<WelcomePage> {
                       MaterialButton(
                         minWidth: double.infinity,
                         height: 60,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (context) => const PrepCenterForm()),
+                          );
+                        },
                         color: Colors.orange,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(40)),

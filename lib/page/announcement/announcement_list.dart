@@ -3,15 +3,18 @@ import 'package:absq/model/announcement_model.dart';
 import 'package:absq/model/main_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../vo/announcement.dart';
 import '../../vo/user.dart';
 import '../../widget/absq_local_app_bar.dart';
 import '../../widget/expandable_text.dart';
+import '../../widget/local_text.dart';
 import '../../widget/show_img.dart';
 import '../contact/contact_us_page.dart';
 import '../profile/profile_page.dart';
+import 'announcement_editor.dart';
 
 class AnnouncementList extends StatefulWidget {
   const AnnouncementList({Key? key}) : super(key: key);
@@ -23,12 +26,7 @@ class AnnouncementList extends StatefulWidget {
 class _AnnouncementListState extends State<AnnouncementList> {
   @override
   Widget build(BuildContext context) {
-    // User? _user = Provider.of<MainModel>(context).user;
-    // if (_user == null) {
-    //   return Container();
-    // }
-    // User user = Provider.of<MainModel>(context).user!;
-
+    User? _user = Provider.of<MainModel>(context).user;
     var announceModel = Provider.of<AnnouncementModel>(context);
 
     return Scaffold(
@@ -63,20 +61,34 @@ class _AnnouncementListState extends State<AnnouncementList> {
                 color: primaryColor,
                 size: 30,
               )),
-          IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  CupertinoPageRoute(builder: (context) => const Profile()),
-                );
-              },
-              icon: const Icon(
-                Icons.account_circle,
-                color: primaryColor,
-                size: 30,
-              ))
+          _user != null
+              ? IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(builder: (context) => const Profile()),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.account_circle,
+                    color: primaryColor,
+                    size: 30,
+                  ))
+              : const SizedBox()
         ],
       ),
+      floatingActionButton: _user != null
+          ? FloatingActionButton.extended(
+              onPressed: () {
+                Navigator.of(context).push(CupertinoPageRoute(
+                    builder: (context) => const AnnouncementEditor()));
+              },
+              icon: const Icon(Icons.add, color: primaryColor),
+              label:
+                  LocalText(context, "announcement.new", color: primaryColor),
+              backgroundColor: Colors.white,
+            )
+          : null,
       body: ListView.builder(
           padding: const EdgeInsets.all(10),
           itemCount: announceModel.announcements.length,
@@ -87,6 +99,7 @@ class _AnnouncementListState extends State<AnnouncementList> {
   }
 
   Widget _item(Announcement announcement, BuildContext context) {
+     User? _user = Provider.of<MainModel>(context).user;
     return InkWell(
       onTap: () {
         Navigator.of(context).push(CupertinoPageRoute(
@@ -112,12 +125,27 @@ class _AnnouncementListState extends State<AnnouncementList> {
                           child: ExpandableText(
                         text: announcement.desc ?? "",
                       )),
+                      _user == null?
                       InkWell(
-                        onTap: (){},
+                        onTap: () {},
                         child: const Padding(
-                          padding: EdgeInsets.only(right: 8,top: 8),
+                          padding: EdgeInsets.only(right: 8, top: 8),
                           child: Icon(
                             Icons.download,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ):InkWell(
+                        onTap: () {
+                           showCupertinoModalPopup<void>(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        actionSheet(context, announcement));
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.only(right: 8, top: 8),
+                          child: Icon(
+                            Feather.more_vertical,
                             color: Colors.grey,
                           ),
                         ),
@@ -133,6 +161,53 @@ class _AnnouncementListState extends State<AnnouncementList> {
               ],
             ),
           )),
+    );
+  }
+
+   CupertinoActionSheet actionSheet(BuildContext context, Announcement announcement) {
+    return CupertinoActionSheet(
+      actions: <CupertinoActionSheetAction>[
+        CupertinoActionSheetAction(
+          child: Row(children: const [
+            SizedBox(width: 10),
+            Icon(
+              Icons.download,
+              color: primaryColor,
+              // size: 30,
+            ),
+            SizedBox(width: 15),
+            Text(
+              "Download file",
+              style: TextStyle(color: primaryColor, fontSize: 15),
+            )
+          ]),
+          onPressed: () => {},
+        ),
+        CupertinoActionSheetAction(
+          child: Row(
+            children: const [
+              SizedBox(width: 10),
+              Icon(
+                Icons.edit,
+                color: primaryColor,
+              ),
+              SizedBox(width: 15),
+              Text(
+                "Edit knowledge garden",
+                style: TextStyle(color: primaryColor, fontSize: 15),
+              )
+            ],
+          ),
+          onPressed: () {
+            Navigator.push(
+              context,
+              CupertinoPageRoute(
+                  builder: (context) => AnnouncementEditor(announcement: announcement)),
+            );
+            
+          },
+        )
+      ],
     );
   }
 }

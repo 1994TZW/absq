@@ -2,17 +2,14 @@ import 'package:absq/vo/registration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../constants.dart';
 import '../../helper/theme.dart';
 import '../../widget/display_text.dart';
 import '../../widget/local_app_bar.dart';
-import '../../widget/local_button.dart';
 import '../../widget/local_progress.dart';
-import '../util.dart';
 
 class RegistrationInfo extends StatefulWidget {
   final Registration registration;
@@ -78,10 +75,9 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
         children: [
           Expanded(
             child: DisplayText(
-              text: _registration.phone ?? "",
-              labelTextKey: "registration.phone",
-              iconData: Icons.phone,
-            ),
+                text: _registration.phone ?? "",
+                labelTextKey: "registration.phone",
+                iconData: MaterialCommunityIcons.phone),
           ),
           IconButton(
               icon: const Icon(Icons.open_in_new, color: primaryColor),
@@ -98,10 +94,9 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
         children: [
           Expanded(
             child: DisplayText(
-              text: _registration.email ?? "",
-              labelTextKey: "registration.email",
-              iconData: Icons.email,
-            ),
+                text: _registration.email ?? "",
+                labelTextKey: "registration.email",
+                iconData: MaterialCommunityIcons.email),
           ),
           IconButton(
               icon: const Icon(Icons.open_in_new, color: primaryColor),
@@ -124,15 +119,33 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
         iconData: Ionicons.location_outline);
 
     final schoolBox = DisplayText(
-      text: _registration.schoolNameAndTeacher,
+      text: _registration.schoolName,
       labelTextKey: "registration.school_name",
-      iconData: MaterialCommunityIcons.school,
+      iconData: FontAwesome5Solid.school,
     );
 
     final levelBox = DisplayText(
       text: _registration.level,
       labelTextKey: "registration.level",
-      iconData: Icons.perm_device_information,
+      iconData: MaterialCommunityIcons.school,
+    );
+
+    final typeBox = DisplayText(
+      text: _registration.formType,
+      labelTextKey: "registration.form_type",
+      iconData: Feather.type,
+    );
+
+    final candicateBox = DisplayText(
+      text: _registration.schoolName,
+      labelTextKey: "bmat.candidate_name",
+      iconData: FontAwesome5Solid.user_graduate,
+    );
+
+    final schoolNameBox = DisplayText(
+      text: _registration.schoolName,
+      labelTextKey: "prep_center_name",
+      iconData: FontAwesome5Solid.school,
     );
 
     return LocalProgress(
@@ -174,16 +187,6 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Flexible(child: schoolBox),
-                Flexible(child: levelBox),
-              ],
-            ),
-            const Divider(
-              height: 2,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
                 Flexible(child: namebox),
                 Flexible(child: genderBox),
               ],
@@ -206,6 +209,26 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
               height: 2,
             ),
             emailbox,
+            const Divider(
+              height: 2,
+            ),
+            typeBox,
+            const Divider(
+              height: 2,
+            ),
+            _registration.formType == cefl_type ? levelBox : const SizedBox(),
+            _registration.formType == cefl_type
+                ? const Divider(
+                    height: 2,
+                  )
+                : const SizedBox(),
+            _registration.formType == cefl_type ? schoolBox : const SizedBox(),
+            _registration.formType == bmat_type
+                ? candicateBox
+                : const SizedBox(),
+                _registration.formType == prep_center_type
+                ? schoolNameBox
+                : const SizedBox(),
             const Divider(
               height: 2,
             ),

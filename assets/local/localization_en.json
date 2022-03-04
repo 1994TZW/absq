@@ -661,7 +661,26 @@
     "registration.level":"Exam Level",
     "registration.email":"Email",
     "registration.phone":"Phone Number",
-    "registration.school_name":"Name of School & Teacher"
+    "registration.school_name":"Name of School & Teacher",
+    "registration.form_type":"Form Type",
+
+    "timetable.form.title":"Exam Timetable",
+    "timetabel.new":"New Timetable",
+    "timetable.desc":"Description",
+    "timetable.image":"Photo",
+
+    
+    "announcement.form.title":"Knowledge Garden",
+    "announcement.new":"New Annoucement",
+    "announcement.desc":"Description",
+    "announcement.image":"Photo",
+
+    "cefr.form.title":"CEFR",
+    "bmat.form.title":"BMAT",
+    "prep_center":"Prep Center",
+    "bmat.candidate_name":"Candidate Name",
+    "prep_center_name":"School Name"
+
     
     
      

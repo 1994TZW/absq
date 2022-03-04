@@ -22,12 +22,6 @@ class _RegistrationListState extends State<RegistrationList> {
   final dateFormatter = DateFormat('dd MMM yyyy');
   @override
   Widget build(BuildContext context) {
-    // User? _user = Provider.of<MainModel>(context).user;
-    // if (_user == null) {
-    //   return Container();
-    // }
-    // User user = Provider.of<MainModel>(context).user!;
-
     var regModel = Provider.of<RegistrationModel>(context);
 
     return Scaffold(
@@ -95,7 +89,8 @@ class _RegistrationListState extends State<RegistrationList> {
       child: InkWell(
         onTap: () {
           Navigator.of(context).push(CupertinoPageRoute(
-              builder: (context) => RegistrationInfo(registration: registration)));
+              builder: (context) =>
+                  RegistrationInfo(registration: registration)));
         },
         child: Row(
           children: <Widget>[
@@ -120,16 +115,14 @@ class _RegistrationListState extends State<RegistrationList> {
                             registration.name ?? "",
                             style: const TextStyle(fontSize: 15.0),
                           ),
-                          registration.date == null
-                              ? const SizedBox()
-                              : Padding(
-                                  padding: const EdgeInsets.only(top: 3.0),
-                                  child: Text(
-                                    dateFormatter.format(registration.date!),
-                                    style: const TextStyle(
-                                        color: Colors.grey, fontSize: 14.0),
-                                  ),
-                                ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 3.0),
+                            child: Text(
+                              registration.formType,
+                              style: const TextStyle(
+                                  color: Colors.grey, fontSize: 14.0),
+                            ),
+                          ),
                           registration.idNumber == null
                               ? Container()
                               : Padding(
@@ -143,9 +136,16 @@ class _RegistrationListState extends State<RegistrationList> {
                         ],
                       ),
                     ),
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.download, color: Colors.grey))
+                    registration.date == null
+                        ? const SizedBox()
+                        : Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Text(
+                              dateFormatter.format(registration.date!),
+                              style: const TextStyle(
+                                  color: Colors.grey, fontSize: 14.0),
+                            ),
+                          ),
                   ],
                 ),
               ),

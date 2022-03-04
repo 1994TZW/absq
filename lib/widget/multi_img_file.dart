@@ -53,7 +53,12 @@ class _MultiImageFileState extends State<MultiImageFile> {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            LocalText(context, widget.titleKey!, color: primaryColor),
+            LocalText(
+              context,
+              widget.titleKey!,
+              color: primaryColor,
+              fontSize: 16,
+            ),
             widget.titleKey != null ? const Spacer() : Container(),
             widget.enabled
                 ? InkWell(

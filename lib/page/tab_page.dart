@@ -19,14 +19,14 @@ class TabPage extends StatefulWidget {
 class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
   int _selectedIndex = 0;
 
-  static const List<Widget> _adminPages = <Widget>[
+  static const List<Widget> _tabPages = <Widget>[
     WelcomePage(),
     TimeTabelList(),
     AnnouncementList(),
     // Center(child: Text("Students"))
   ];
 
-  List<BottomNavigationBarItem> adminItems = [
+  List<BottomNavigationBarItem> items = [
     const BottomNavigationBarItem(
       icon: Icon(AntDesign.form),
       label: 'Registration',
@@ -39,10 +39,6 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
       icon: Icon(Ionicons.information_circle_outline),
       label: 'Knowledge Garden',
     ),
-    // const BottomNavigationBarItem(
-    //   icon: Icon(MaterialCommunityIcons.account_multiple_outline),
-    //   label: ' Students',
-    // ),
   ];
 
   void _onItemTapped(int index) {
@@ -53,14 +49,8 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    // User? _user = Provider.of<MainModel>(context).user;
-    // if (_user == null) {
-    //   return Container();
-    // }
-    // User user = Provider.of<MainModel>(context).user!;
-
     return Scaffold(
-      body: _adminPages.elementAt(_selectedIndex),
+      body: _tabPages.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: kBackgroundColor,
         selectedItemColor: primaryColor,
@@ -68,7 +58,7 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
         unselectedFontSize: 10,
         selectedFontSize: 10,
         type: BottomNavigationBarType.fixed,
-        items: adminItems,
+        items: items,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
       ),

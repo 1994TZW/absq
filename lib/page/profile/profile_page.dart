@@ -49,8 +49,8 @@ class _ProfileState extends State<Profile> {
 
     final phonenumberbox = DisplayText(
       text: mainModel.user!.phone,
-      labelTextKey: "profile.phone",
-      iconData: Icons.phone,
+      labelTextKey: "registration.email",
+      iconData: Icons.email,
     );
 
     final statusBox = DisplayText(

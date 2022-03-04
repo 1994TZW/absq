@@ -4,14 +4,17 @@ import 'package:absq/model/timetable_model.dart';
 import 'package:absq/vo/timetable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../vo/user.dart';
 import '../../widget/absq_local_app_bar.dart';
 import '../../widget/expandable_text.dart';
+import '../../widget/local_text.dart';
 import '../../widget/show_img.dart';
 import '../contact/contact_us_page.dart';
 import '../profile/profile_page.dart';
+import 'timetable_editor.dart';
 
 class TimeTabelList extends StatefulWidget {
   const TimeTabelList({Key? key}) : super(key: key);
@@ -23,12 +26,7 @@ class TimeTabelList extends StatefulWidget {
 class _TimeTabelListState extends State<TimeTabelList> {
   @override
   Widget build(BuildContext context) {
-    // User? _user = Provider.of<MainModel>(context).user;
-    // if (_user == null) {
-    //   return Container();
-    // }
-    // User user = Provider.of<MainModel>(context).user!;
-
+    User? _user = Provider.of<MainModel>(context).user;
     var timetableModel = Provider.of<TimetableModel>(context);
 
     return Scaffold(
@@ -63,20 +61,33 @@ class _TimeTabelListState extends State<TimeTabelList> {
                 color: primaryColor,
                 size: 30,
               )),
-          IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  CupertinoPageRoute(builder: (context) => const Profile()),
-                );
-              },
-              icon: const Icon(
-                Icons.account_circle,
-                color: primaryColor,
-                size: 30,
-              ))
+          _user != null
+              ? IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(builder: (context) => const Profile()),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.account_circle,
+                    color: primaryColor,
+                    size: 30,
+                  ))
+              : const SizedBox()
         ],
       ),
+      floatingActionButton: _user != null
+          ? FloatingActionButton.extended(
+              onPressed: () {
+                Navigator.of(context).push(CupertinoPageRoute(
+                    builder: (context) => const TimetableEditor()));
+              },
+              icon: const Icon(Icons.add, color: primaryColor),
+              label: LocalText(context, "timetabel.new", color: primaryColor),
+              backgroundColor: Colors.white,
+            )
+          : null,
       body: ListView.builder(
           padding: const EdgeInsets.all(10),
           itemCount: timetableModel.timeTables.length,
@@ -87,6 +98,8 @@ class _TimeTabelListState extends State<TimeTabelList> {
   }
 
   Widget _item(TimeTable timeTable, BuildContext context) {
+    User? _user = Provider.of<MainModel>(context).user;
+
     return InkWell(
       onTap: () {
         Navigator.of(context).push(CupertinoPageRoute(
@@ -112,16 +125,32 @@ class _TimeTabelListState extends State<TimeTabelList> {
                           child: ExpandableText(
                         text: timeTable.desc ?? "",
                       )),
-                      InkWell(
-                        onTap: (){},
-                        child: const Padding(
-                          padding: EdgeInsets.only(top: 0),
-                          child: Icon(
-                            Icons.download,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      )
+                      _user == null
+                          ? InkWell(
+                              onTap: () {},
+                              child: const Padding(
+                                padding: EdgeInsets.only(top: 0),
+                                child: Icon(
+                                  Icons.download,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            )
+                          : InkWell(
+                              onTap: () {
+                                showCupertinoModalPopup<void>(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        actionSheet(context, timeTable));
+                              },
+                              child: const Padding(
+                                padding: EdgeInsets.only(top: 0),
+                                child: Icon(
+                                  Feather.more_vertical,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            )
                     ],
                   ),
                 ),
@@ -133,6 +162,53 @@ class _TimeTabelListState extends State<TimeTabelList> {
               ],
             ),
           )),
+    );
+  }
+
+  CupertinoActionSheet actionSheet(BuildContext context, TimeTable timeTable) {
+    return CupertinoActionSheet(
+      actions: <CupertinoActionSheetAction>[
+        CupertinoActionSheetAction(
+          child: Row(children: const [
+            SizedBox(width: 10),
+            Icon(
+              Icons.download,
+              color: primaryColor,
+              // size: 30,
+            ),
+            SizedBox(width: 15),
+            Text(
+              "Download file",
+              style: TextStyle(color: primaryColor, fontSize: 15),
+            )
+          ]),
+          onPressed: () => {},
+        ),
+        CupertinoActionSheetAction(
+          child: Row(
+            children: const [
+              SizedBox(width: 10),
+              Icon(
+                Icons.edit,
+                color: primaryColor,
+              ),
+              SizedBox(width: 15),
+              Text(
+                "Edit timetable",
+                style: TextStyle(color: primaryColor, fontSize: 15),
+              )
+            ],
+          ),
+          onPressed: () {
+            Navigator.push(
+              context,
+              CupertinoPageRoute(
+                  builder: (context) => TimetableEditor(timeTable: timeTable)),
+            );
+            
+          },
+        )
+      ],
     );
   }
 }

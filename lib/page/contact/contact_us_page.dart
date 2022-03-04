@@ -27,9 +27,6 @@ class _ContactUsPageState extends State<ContactUsPage> {
   @override
   Widget build(BuildContext context) {
     User? _user = Provider.of<MainModel>(context).user;
-    if (_user == null) {
-      return Container();
-    }
 
     Setting setting = Provider.of<MainModel>(context).setting!;
     _data = [
@@ -67,9 +64,8 @@ class _ContactUsPageState extends State<ContactUsPage> {
         labelColor: primaryColor,
         arrowColor: primaryColor,
         actions: [
-          // _user.hasAdmin()
-          //     ?
-               IconButton(
+          _user != null
+              ? IconButton(
                   icon: const Icon(
                     Icons.edit,
                     color: primaryColor,
@@ -83,7 +79,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                               )),
                     );
                   })
-              // : const SizedBox()
+              : const SizedBox()
         ],
       ),
       body: Container(

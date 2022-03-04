@@ -10,7 +10,7 @@ class Registration {
   String? address;
   String? email;
   String? phone;
-  String? schoolNameAndTeacher;
+  String? schoolName;
   String formType ;
   String? level;
 
@@ -24,7 +24,7 @@ class Registration {
       this.address,
       this.email,
       this.phone,
-      this.schoolNameAndTeacher,
+      this.schoolName,
       this.gender,
       this.dateOfBirth,
       required this.formType,

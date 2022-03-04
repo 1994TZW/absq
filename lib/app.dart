@@ -11,6 +11,7 @@ import 'helper/localization/transalation.dart';
 import 'model/announcement_model.dart';
 import 'model/language_model.dart';
 import 'model/main_model.dart';
+import 'page/admin_tab_page.dart';
 import 'page/login/login_page.dart';
 import 'page/splash_page.dart';
 
@@ -51,8 +52,8 @@ class _AppState extends State<App> {
   Map<String, WidgetBuilder> route(BuildContext context) {
     final routes = <String, WidgetBuilder>{
       '/': (_) => SplashScreen(),
-      '/login': (_) => LoginPage(),
-      '/home': (_) => TabPage()
+      '/login': (_) => const TabPage(),
+      '/home': (_) => const AdminTabPage()
     };
     return routes;
   }

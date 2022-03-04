@@ -40,10 +40,6 @@ class _AdminTabPageState extends State<AdminTabPage>
       icon: Icon(Ionicons.information_circle_outline),
       label: 'Knowledge Garden',
     ),
-    // const BottomNavigationBarItem(
-    //   icon: Icon(MaterialCommunityIcons.account_multiple_outline),
-    //   label: ' Students',
-    // ),
   ];
 
   void _onItemTapped(int index) {
@@ -54,12 +50,6 @@ class _AdminTabPageState extends State<AdminTabPage>
 
   @override
   Widget build(BuildContext context) {
-    // User? _user = Provider.of<MainModel>(context).user;
-    // if (_user == null) {
-    //   return Container();
-    // }
-    // User user = Provider.of<MainModel>(context).user!;
-
     return Scaffold(
       body: _adminPages.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
